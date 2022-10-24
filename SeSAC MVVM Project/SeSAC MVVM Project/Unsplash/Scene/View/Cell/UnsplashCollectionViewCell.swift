@@ -13,7 +13,7 @@ class UnsplashCollectionViewCell: BaseCollectionViewCell {
     
     let imageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleToFill
         return view
     }()
     
