@@ -17,6 +17,7 @@ final class UnsplashView: BaseView {
     
     lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: setLayout())
+        view.keyboardDismissMode = .onDragWithAccessory
         return view
     }()
     
