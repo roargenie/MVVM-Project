@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class UnsplashView: BaseView {
+final class SearchView: BaseView {
     
     let searchBar: UISearchBar = {
         let view = UISearchBar()

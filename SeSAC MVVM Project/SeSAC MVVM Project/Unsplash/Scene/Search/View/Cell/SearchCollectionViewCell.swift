@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class UnsplashCollectionViewCell: BaseCollectionViewCell {
+class SearchCollectionViewCell: BaseCollectionViewCell {
     
     let imageView: UIImageView = {
         let view = UIImageView()

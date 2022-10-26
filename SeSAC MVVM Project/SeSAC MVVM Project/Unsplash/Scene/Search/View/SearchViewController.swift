@@ -10,12 +10,12 @@ import RxSwift
 import RxCocoa
 
 
-final class UnsplashViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let mainView = UnsplashView()
-    private let viewModel = UnsplashViewModel()
+    private let mainView = SearchView()
+    private let viewModel = SearchViewModel()
     
     private var disposeBag = DisposeBag()
     
@@ -74,10 +74,10 @@ final class UnsplashViewController: BaseViewController {
     
 }
 
-extension UnsplashViewController {
+extension SearchViewController {
     
     private func configureDataSource() {
-        let cellresistration = UICollectionView.CellRegistration<UnsplashCollectionViewCell, SearchResult> { cell, indexPath, itemIdentifier in
+        let cellresistration = UICollectionView.CellRegistration<SearchCollectionViewCell, SearchResult> { cell, indexPath, itemIdentifier in
             
             DispatchQueue.global().async {
                 let url = URL(string: itemIdentifier.urls.regular)!
@@ -96,11 +96,3 @@ extension UnsplashViewController {
     }
 }
 
-//extension UnsplashViewController: UISearchBarDelegate {
-//
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let text = searchBar.text else { return }
-//        viewModel.requestPhoto(query: text)
-//    }
-//
-//}

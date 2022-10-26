@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 
 
-final class UnsplashViewModel {
+final class SearchViewModel {
     
 //    var photoList: CObservable<SearchPhoto> = CObservable(SearchPhoto(total: 0, totalPages: 0, results: []))
     var photoList = PublishSubject<SearchPhoto>()
