@@ -53,9 +53,7 @@ final class SearchViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        mainView.searchBar
-            .rx
-            .text
+        mainView.searchBar.rx.text
             .orEmpty
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withUnretained(self)
@@ -69,10 +67,26 @@ final class SearchViewController: BaseViewController {
                 print("disposed")
             }
             .disposed(by: disposeBag)
+        
+        mainView.collectionView.rx.itemSelected
+            .withUnretained(self)
+            .bind { (vc, item) in
+                vc.presentUserInfoVC(item)
+            }
+            .disposed(by: disposeBag)
 
     }
     
+    private func presentUserInfoVC(_ indexPath: IndexPath) {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        let vc = UserInfoViewController()
+        vc.userData = item.user
+        transition(vc, transitionStyle: .present)
+    }
+    
 }
+
+// MARK: - Extension
 
 extension SearchViewController {
     

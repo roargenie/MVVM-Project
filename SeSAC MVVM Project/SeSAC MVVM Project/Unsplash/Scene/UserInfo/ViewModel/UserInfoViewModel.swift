@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
+
+
+final class UserInfoViewModel {
+    
+    var userData = PublishRelay<User>()
+    
+}

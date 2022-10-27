@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+
+
+final class UsersPhotoViewModel {
+    
+    
+    
+    
+}
+
