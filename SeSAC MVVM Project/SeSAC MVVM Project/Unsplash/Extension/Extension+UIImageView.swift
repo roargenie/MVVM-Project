@@ -1,9 +1,3 @@
-//
-//  Extension+UIImageView.swift
-//  SeSAC MVVM Project
-//
-//  Created by 이명진 on 2022/10/28.
-//
 
 import UIKit
 
@@ -18,5 +12,4 @@ extension UIImageView {
     func makeToCircle() {
         self.makeRoundedCorners(self.frame.width / 2)
     }
-    
 }

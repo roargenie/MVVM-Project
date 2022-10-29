@@ -35,10 +35,6 @@ final class SearchViewController: BaseViewController {
     
     // MARK: - OverrideFunction
     
-    override func configureUI() {
-//        mainView.searchBar.delegate = self
-    }
-    
     // MARK: - CustomFunction
     
     private func bindPhotoList() {
@@ -59,13 +55,7 @@ final class SearchViewController: BaseViewController {
             .withUnretained(self)
             .subscribe { (vc, value) in
                 vc.viewModel.requestPhoto(query: value)
-            } onError: { error in
-                print("error: \(error)")
-            } onCompleted: {
-                print("completed")
-            } onDisposed: {
-                print("disposed")
-            }
+            } 
             .disposed(by: disposeBag)
         
         mainView.collectionView.rx.itemSelected
@@ -74,16 +64,14 @@ final class SearchViewController: BaseViewController {
                 vc.presentUserInfoVC(item)
             }
             .disposed(by: disposeBag)
-
     }
     
     private func presentUserInfoVC(_ indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         let vc = UserInfoViewController()
-        vc.userData = item.user
+        vc.viewModel.bindData(item.user)
         transition(vc, transitionStyle: .present)
     }
-    
 }
 
 // MARK: - Extension

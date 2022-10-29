@@ -9,14 +9,9 @@ import UIKit
 
 
 extension Int {
-    
     func numberFormatter() -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         return self.formatted()
     }
-    
 }
-
-
-

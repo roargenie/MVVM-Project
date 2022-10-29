@@ -15,11 +15,10 @@ final class UserInfoViewController: BaseViewController {
     // MARK: - Properties
     
     private let mainView = UserInfoView()
-    private let viewModel = UserInfoViewModel()
+    
+    let viewModel = UserInfoViewModel()
     
     private var disposeBag = DisposeBag()
-    
-    var userData: User?
     
     // MARK: - LifeCycle
     
@@ -34,30 +33,17 @@ final class UserInfoViewController: BaseViewController {
     
     // MARK: - OverrideFunction
     
-    override func configureUI() {
-        guard let safeData = userData else { return }
-        DispatchQueue.global().async {
-            let url = URL(string: safeData.profileImage.large)!
-            let data = try? Data(contentsOf: url)
-            DispatchQueue.main.async {
-                self.mainView.profileImageView.image = UIImage(data: data!)
-                self.mainView.profileImageView.makeToCircle()
-            }
-        }
-        mainView.nameLabel.text = safeData.username
-        mainView.totalPhotoLabel.text = "Total Photos : \(safeData.totalPhotos.numberFormatter())"
-        mainView.totalLikeLabel.text = "Total Like : \(safeData.totalLikes.numberFormatter())"
-    }
-    
     
     // MARK: - CustomFunction
     
     private func bindUserData() {
+        print(#function)
         
+        viewModel.userData
+            .withUnretained(self)
+            .bind { (vc, item) in
+                vc.mainView.setupData(item)
+            }
+            .disposed(by: disposeBag)
     }
-    
 }
-
-
-// MARK: - Extension
-

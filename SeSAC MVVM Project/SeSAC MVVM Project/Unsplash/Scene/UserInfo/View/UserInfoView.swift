@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class UserInfoView: BaseView {
     
     let profileImageView: UIImageView = {
@@ -20,14 +19,12 @@ final class UserInfoView: BaseView {
     
     let nameLabel: UILabel = {
         let view = UILabel()
-        view.text = "루희와 묭지니"
         view.textAlignment = .center
         return view
     }()
     
     let totalPhotoLabel: UILabel = {
         let view = UILabel()
-        view.text = "Total Photos : 1,100"
         view.textColor = LabelColor.totalPhotoLabelColor
         view.textAlignment = .center
         return view
@@ -35,7 +32,6 @@ final class UserInfoView: BaseView {
     
     let totalLikeLabel: UILabel = {
         let view = UILabel()
-        view.text = "Total Like : 250"
         view.textColor = LabelColor.totalLikeLabelColor
         view.textAlignment = .center
         return view
@@ -63,7 +59,12 @@ final class UserInfoView: BaseView {
     }
     
     override func configureUI() {
-        [profileImageView, nameLabel, totalPhotoLabel, totalLikeLabel, lineView, showMoreButton]
+        [profileImageView,
+         nameLabel,
+         totalPhotoLabel,
+         totalLikeLabel,
+         lineView,
+         showMoreButton]
             .forEach { self.addSubview($0) }
     }
     
@@ -102,8 +103,23 @@ final class UserInfoView: BaseView {
         }
     }
     
+    func setImage(_ photoURLstr: String?) {
+        guard let safeString = photoURLstr else { return }
+        DispatchQueue.global().async {
+            let url = URL(string: safeString)!
+            let data = try? Data(contentsOf: url)
+            
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: data!)
+                self.profileImageView.makeToCircle()
+            }
+        }
+    }
+    
+    func setupData(_ userData: User) {
+        setImage(userData.profileImage.large)
+        nameLabel.text = userData.name
+        totalPhotoLabel.text = "Total Photos : \(userData.totalPhotos.numberFormatter())"
+        totalLikeLabel.text = "Total Like : \(userData.totalLikes.numberFormatter())"
+    }
 }
-
-
-
-

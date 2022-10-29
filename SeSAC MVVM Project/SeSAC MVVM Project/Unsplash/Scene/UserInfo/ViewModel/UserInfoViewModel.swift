@@ -9,9 +9,11 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-
 final class UserInfoViewModel {
     
-    var userData = PublishRelay<User>()
+    var userData = BehaviorSubject(value: User(id: "", username: "", name: "", profileImage: ProfileImage(small: "", medium: "", large: ""), totalCollections: 0, totalLikes: 0, totalPhotos: 0))
     
+    func bindData(_ item: User) {
+        userData.onNext(item)
+    }
 }
