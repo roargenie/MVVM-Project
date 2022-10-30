@@ -79,7 +79,7 @@ final class SearchViewController: BaseViewController {
 extension SearchViewController {
     
     private func configureDataSource() {
-        let cellresistration = UICollectionView.CellRegistration<SearchCollectionViewCell, SearchResult> { cell, indexPath, itemIdentifier in
+        let cellregistration = UICollectionView.CellRegistration<SearchCollectionViewCell, SearchResult> { cell, indexPath, itemIdentifier in
             
             DispatchQueue.global().async {
                 let url = URL(string: itemIdentifier.urls.regular)!
@@ -92,7 +92,7 @@ extension SearchViewController {
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: mainView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cellresistration, for: indexPath, item: itemIdentifier)
+            let cell = collectionView.dequeueConfiguredReusableCell(using: cellregistration, for: indexPath, item: itemIdentifier)
             return cell
         })
     }

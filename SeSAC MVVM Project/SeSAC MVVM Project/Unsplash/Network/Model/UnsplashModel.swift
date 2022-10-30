@@ -40,21 +40,23 @@ struct SearchResult: Codable, Hashable {
 
 struct UsersPhoto: Codable, Hashable {
     let id: String
+    let user: User
     let width, height: Int
     let urls: Urls
     let likes: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case width, height
         case urls, likes
+        case user
     }
+    
 }
 
 // MARK: - Urls
 
 struct Urls: Codable, Hashable {
-    
     let raw, full, regular, small: String
     let thumb, smallS3: String
 

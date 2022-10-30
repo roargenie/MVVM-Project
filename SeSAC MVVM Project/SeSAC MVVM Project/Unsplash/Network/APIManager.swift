@@ -16,7 +16,7 @@ final class APIManager {
     private init() { }
     
     typealias searchPhotoCompletionHandler = (SearchPhoto?, Int?, Error?) -> Void
-    typealias usersPhotoCompletionHandler = (UsersPhoto?, Int?, Error?) -> Void
+    typealias usersPhotoCompletionHandler = ([UsersPhoto]?, Int?, Error?) -> Void
     
     func requestSearchPhoto(query: String, completion: @escaping searchPhotoCompletionHandler) {
         
@@ -42,10 +42,11 @@ final class APIManager {
         let header: HTTPHeaders = ["Authorization": APIKey.authorization]
 //        let parameter: Parameters = ["username": username]
         
-        AF.request(url, method: .get, headers: header).responseDecodable(of: UsersPhoto.self) { response in
+        AF.request(url, method: .get, headers: header).responseDecodable(of: [UsersPhoto].self) { response in
             
             let statusCode = response.response?.statusCode
-            
+            print(url)
+            print(response.result)
             switch response.result {
             case .success(let value):
                 completion(value, statusCode, nil)

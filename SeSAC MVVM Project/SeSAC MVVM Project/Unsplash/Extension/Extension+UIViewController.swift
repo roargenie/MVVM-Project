@@ -20,7 +20,7 @@ extension UIViewController {
         
         switch transitionStyle {
         case .presentFull:
-            viewController.modalPresentationStyle = .overCurrentContext
+            viewController.modalPresentationStyle = .overFullScreen
             self.present(viewController, animated: true)
         case .present:
 //            viewController.modalPresentationStyle = .pageSheet

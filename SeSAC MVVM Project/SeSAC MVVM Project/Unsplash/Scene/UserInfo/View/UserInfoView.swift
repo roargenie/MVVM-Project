@@ -13,7 +13,6 @@ final class UserInfoView: BaseView {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
-        view.backgroundColor = .systemPink
         return view
     }()
     

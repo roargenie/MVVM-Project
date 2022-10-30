@@ -43,7 +43,23 @@ final class UserInfoViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc, item) in
                 vc.mainView.setupData(item)
+                vc.viewModel.user = item
             }
             .disposed(by: disposeBag)
+        
+        mainView.showMoreButton.rx.tap
+            .withUnretained(self)
+            .subscribe { (vc, _) in
+                vc.presentUsersPhotoVC()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func presentUsersPhotoVC() {
+        let vc = UsersPhotoViewController()
+        if let user = viewModel.user {
+            vc.userName = user.username
+        }
+        transition(vc, transitionStyle: .presentFull)
     }
 }

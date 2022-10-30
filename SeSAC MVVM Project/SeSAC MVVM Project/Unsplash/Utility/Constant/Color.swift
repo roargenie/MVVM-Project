@@ -12,6 +12,7 @@ import UIKit
 enum LabelColor {
     static let totalPhotoLabelColor = UIColor.lightGray
     static let totalLikeLabelColor = UIColor.lightGray
+    static let usersPhotoLabelColor = UIColor.white
 }
 
 enum LineViewColor {
